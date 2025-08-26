@@ -1,4 +1,5 @@
 import LabPage from "@/app/components/LabPage";
+import { labsConfig } from "@/config";
 
 type Props = {
   params: {
@@ -12,13 +13,8 @@ export default function Lab({ params }: Props) {
 
 // Generate static params for all available labs
 export async function generateStaticParams() {
-  // You can import this from config if needed
-  const labSlugs = [
-    "network-link-v2",
-    "off-exchange", 
-    "embedded-wallets",
-    "web3-workshop"
-    ];
+  // Get lab slugs from your actual config
+  const labSlugs = Object.keys(labsConfig);
   
   return labSlugs.map((slug) => ({
     slug: slug,
