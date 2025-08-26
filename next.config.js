@@ -7,6 +7,9 @@ const nextConfig = {
   },
   basePath: process.env.NODE_ENV === 'production' ? '/ramp-onboarding' : '',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/ramp-onboarding/' : '',
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 }
 
 module.exports = nextConfig

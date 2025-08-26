@@ -160,6 +160,7 @@ export default function InteractiveQuiz({ questions = RAMP_QUIZ_QUESTIONS }: Int
             <div className="bg-emerald-100 border border-emerald-300 rounded-lg p-4 mb-4">
               <p className="text-emerald-800 font-bold text-lg">
                 🚀 Perfect score! You're ready for the next step!
+
               </p>
             </div>
           )}
