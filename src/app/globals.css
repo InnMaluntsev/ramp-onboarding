@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'highlight.js/styles/monokai.css'; 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', Helvetica, sans-serif;
+}
+
+
+.navbar-link {
+  @apply text-secondary hover:text-primary text-xl transition-colors;
+}
+
+.navbar-button {
+  @apply bg-gradient-to-r from-primary-400 to-primary-600 text-white px-6 py-3 rounded-2xl text-sm hover:from-primary hover:to-primary transition-all;
+}
+
+
