@@ -57,57 +57,6 @@ const LabCompletionHub = ({ onStartOver, onBackToLabs, labTitle = "RAMP Onboardi
     }
   ];
 
-  const timelinePhases = [
-    {
-      phase: "Now",
-      title: "Testing & Validation",
-      tasks: [
-        "Test your RAMP endpoints with Fireblocks validation tools",
-        "Verify payment instruction generation works correctly",
-        "Validate error handling and edge cases",
-        "Ensure compliance workflows are functioning",
-        "Run end-to-end transaction simulations"
-      ],
-      status: "current"
-    },
-    {
-      phase: "Week 1", 
-      title: "Fireblocks Integration",
-      tasks: [
-        "Submit your RAMP implementation for Fireblocks review",
-        "Complete technical integration testing",
-        "Configure production environment settings",
-        "Set up monitoring and alerting systems",
-        "Finalize compliance and security configurations"
-      ],
-      status: "upcoming"
-    },
-    {
-      phase: "Week 2-3",
-      title: "Go-Live Preparation",
-      tasks: [
-        "Complete Fireblocks onboarding process",
-        "Configure your provider settings in Fireblocks network",
-        "Set up customer support and documentation",
-        "Prepare marketing materials for your RAMP services",
-        "Train your team on RAMP operations and troubleshooting"
-      ],
-      status: "upcoming"
-    },
-    {
-      phase: "Week 4+",
-      title: "Launch & Scale",
-      tasks: [
-        "Launch your RAMP services to customers",
-        "Monitor transaction volumes and performance",
-        "Gather customer feedback and iterate",
-        "Expand to additional payment methods and regions",
-        "Scale infrastructure based on demand"
-      ],
-      status: "upcoming"
-    }
-  ];
-
   const practicalTools = [
     {
       title: "Fireblocks RAMP API Documentation",
@@ -120,36 +69,29 @@ const LabCompletionHub = ({ onStartOver, onBackToLabs, labTitle = "RAMP Onboardi
       title: "API Validation Tools",
       description: "Test and validate your RAMP implementation before going live",
       type: "Testing",
-      downloadUrl: "#validation-tools",
+      downloadUrl: "https://github.com/fireblocks/fireblocks-network-link/tree/main",
       icon: FiTarget
     },
     {
-      title: "Implementation Examples",
-      description: "Sample code and reference implementations for common RAMP use cases",
-      type: "Code",
-      downloadUrl: "#examples",
-      icon: FiFileText
-    },
-    {
-      title: "Compliance Checklist",
-      description: "KYC/AML requirements and regulatory guidelines for RAMP providers",
-      type: "Checklist",
-      downloadUrl: "#compliance",
-      icon: FiShield
-    },
-    {
-      title: "Troubleshooting Guide",
-      description: "Common issues, error codes, and solutions for RAMP implementations",
+      title: "Fireblocks Orders Orchestration",
+      description: "Comprehensive guide to order flow management and processing workflows",
       type: "Guide",
-      downloadUrl: "#troubleshooting",
+      downloadUrl: "https://docs.google.com/presentation/d/11KuxyNhSqrsNJ6pxcamQE3vJ7AH_zx6Six5ymknTpwo/edit?slide=id.g37368cd026c_0_0#slide=id.g37368cd026c_0_0",
       icon: FiTrendingUp
     },
     {
-      title: "Customer Integration Kit",
-      description: "Help your customers integrate with your RAMP services effectively",
-      type: "Kit",
-      downloadUrl: "#customer-kit",
-      icon: FiUsers
+      title: "API Order Model",
+      description: "Detailed explanation of order flows, pricing methods, and compliance requirements",
+      type: "Documentation",
+      downloadUrl: "https://drive.google.com/file/d/1es_K0Qnu0WSA4vEODfIZmdmnVVFKhS_m/view?usp=sharing",
+      icon: FiFileText
+    },
+    {
+      title: "Fireblocks Network for Payments",
+      description: "Complete overview of the Fireblocks Network payment capabilities and integration",
+      type: "Guide",
+      downloadUrl: "https://drive.google.com/file/d/1CqIvLAl3Rd4PYBbmDETdw1K42wygHhP0/view",
+      icon: FiBookOpen
     }
   ];
 
@@ -219,7 +161,7 @@ const LabCompletionHub = ({ onStartOver, onBackToLabs, labTitle = "RAMP Onboardi
           onClick={() => toggleSection('achievements')}
           className="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
         >
-          <h2 className="text-xl font-semibold text-gray-900">🏆 Achievement Summary</h2>
+          <h2 className="text-xl font-semibold text-gray-900">Achievement Summary</h2>
           {expandedSection === 'achievements' ? <FiChevronUp /> : <FiChevronDown />}
         </button>
         
@@ -242,59 +184,13 @@ const LabCompletionHub = ({ onStartOver, onBackToLabs, labTitle = "RAMP Onboardi
         )}
       </div>
 
-      {/* Implementation Roadmap */}
-      <div className="bg-white border border-gray-200 rounded-lg">
-        <button
-          onClick={() => toggleSection('roadmap')}
-          className="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
-        >
-          <h2 className="text-xl font-semibold text-gray-900">🗺️ Customer Implementation Roadmap</h2>
-          {expandedSection === 'roadmap' ? <FiChevronUp /> : <FiChevronDown />}
-        </button>
-        
-        {expandedSection === 'roadmap' && (
-          <div className="p-4 pt-0 border-t border-gray-100">
-            <div className="space-y-6">
-              {timelinePhases.map((phase, index) => (
-                <div key={index} className="flex items-start space-x-4">
-                  <div className="flex flex-col items-center">
-                    <div className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold">
-                      {index + 1}
-                    </div>
-                    {index < timelinePhases.length - 1 && (
-                      <div className="w-px h-16 bg-gray-200 mt-2"></div>
-                    )}
-                  </div>
-                  <div className="flex-1 pb-8">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium">
-                        {phase.phase}
-                      </span>
-                      <h3 className="font-semibold text-gray-900">{phase.title}</h3>
-                    </div>
-                    <ul className="space-y-1">
-                      {phase.tasks.map((task, taskIndex) => (
-                        <li key={taskIndex} className="text-sm text-gray-600 flex items-center space-x-2">
-                          <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
-                          <span>{task}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Practical Tools */}
+      {/* RAMP Implementation Resources */}
       <div className="bg-white border border-gray-200 rounded-lg">
         <button
           onClick={() => toggleSection('tools')}
           className="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
         >
-          <h2 className="text-xl font-semibold text-gray-900">🛠️ RAMP Implementation Resources</h2>
+          <h2 className="text-xl font-semibold text-gray-900">RAMP Implementation Resources</h2>
           {expandedSection === 'tools' ? <FiChevronUp /> : <FiChevronDown />}
         </button>
         
@@ -337,7 +233,7 @@ const LabCompletionHub = ({ onStartOver, onBackToLabs, labTitle = "RAMP Onboardi
           onClick={() => toggleSection('actions')}
           className="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
         >
-          <h2 className="text-xl font-semibold text-gray-900">🚀 Recommended Next Steps</h2>
+          <h2 className="text-xl font-semibold text-gray-900">Recommended Next Steps</h2>
           {expandedSection === 'actions' ? <FiChevronUp /> : <FiChevronDown />}
         </button>
         
@@ -386,7 +282,7 @@ const LabCompletionHub = ({ onStartOver, onBackToLabs, labTitle = "RAMP Onboardi
 
       {/* RAMP Business Value */}
       <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-6">
-        <h3 className="text-xl font-semibold text-purple-900 mb-4">🚀 Your RAMP Implementation Benefits</h3>
+        <h3 className="text-xl font-semibold text-purple-900 mb-4">Your RAMP Implementation Benefits</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="text-center">
             <div className="text-2xl font-bold text-purple-600 mb-1">24/7</div>
@@ -419,12 +315,6 @@ const LabCompletionHub = ({ onStartOver, onBackToLabs, labTitle = "RAMP Onboardi
           className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
         >
           Explore More Labs
-        </button>
-        <button 
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors"
-          onClick={() => window.open('https://fireblocks.github.io/fireblocks-network-link/v2/docs.html#section/Introduction', '_blank')}
-        >
-          View RAMP API Docs
         </button>
       </div>
     </div>
