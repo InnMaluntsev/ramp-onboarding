@@ -6,11 +6,13 @@ import {
   LabConfig,
 } from "./types";
 
+
 const isDev = process.env.NODE_ENV === 'development';
+const isProd = process.env.NODE_ENV === 'production';
 
 export const generalConfig: GeneralConfig = {
   companyName: "Fireblocks",
-  basePath: isDev ? "" : "/PS_Labs",
+  basePath: isProd ? "/ramp-onboarding" : (isDev ? "" : "/PS_Labs"),
 };
 
 export const navBarConfig: NavBarConfig = {

@@ -11,7 +11,9 @@
     "start": "next start",
     "lint": "next lint",
     "build": "next build",
-    "export": "next export"
+    "export": "next export",
+    "deploy": "npm run build && touch out/.nojekyll"
+
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.14",
