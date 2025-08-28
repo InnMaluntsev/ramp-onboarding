@@ -26,12 +26,16 @@ Select which additional endpoints you want to implement:
 - **GET /accounts/{id}/ramps** - List RAMP transactions
 - **GET /accounts/{id}/ramps/{id}** - Get specific RAMP transaction details
 
+#### Rates & Pricing (Optional but Recommended)
+- **GET /accounts/{id}/rate** - Real-time rates for asset pairs (fallback to Fireblocks internal rates if not implemented)
+
 ## Instructions
 
 ### Step 1: Select Your Implementation Scope
 1. **Mandatory endpoints** are automatically included
 2. **Check the optional endpoints** you want to implement
 3. **Focus on RAMP endpoints** if you're building payment processing features
+4. **Consider implementing rates endpoint** to provide your own real-time conversion rates
 
 ### Step 2: Build and Validate Responses
 1. **Select an endpoint** from the available list
@@ -49,7 +53,34 @@ Select which additional endpoints you want to implement:
 
 [API_BUILDER_COMPONENT]
 
+## Important Notes
 
+### Rates Endpoint Benefits
+If you implement **GET /accounts/{id}/rate**, you can:
+- **Provide your own real-time rates** for better customer experience
+- **Control pricing** instead of relying on Fireblocks fallback rates
+- **Show competitive rates** specific to your liquidity sources
+- **Support multiple asset pairs** with custom rate logic
+
+### Rate Response Format
+```json
+{
+  "rate": "0.9",
+  "timestamp": 1546658861000,
+  "baseAsset": {
+    "nationalCurrencyCode": "USD"
+  },
+  "quoteAsset": {
+    "nationalCurrencyCode": "EUR"
+  }
+}
+```
+
+### Rate Query Parameters
+The rates endpoint supports these query parameters:
+- `conversionPairId` - Conversion pair to get the rate for
+- `rampsPairId` - RAMP pair to get the rate for  
+- `orderBookPairId` - Order book pair to get the rate for
 
 ### Status Meanings
 - **Pending**: Order created, waiting for payment or processing
@@ -70,6 +101,12 @@ Select which additional endpoints you want to implement:
 - **Transfer Methods**: Must match supported methods (Iban, PublicBlockchain, etc.)
 - **Payment Instructions**: Required for orders, must include all necessary details
 - **Amounts**: String format with proper decimal precision
+
+### Rates Endpoint Validation
+- **Rate**: Must be a string representing a positive number
+- **Timestamp**: Unix timestamp in milliseconds
+- **Base/Quote Assets**: Proper asset reference format
+- **Asset References**: Must follow same rules as other endpoints
 
 ### Amount Formatting Standards
 - **USD, EUR** (fiat): 2 decimal places → `"1234.56"`
@@ -100,6 +137,13 @@ Select which additional endpoints you want to implement:
 4. **System processes** conversion on target blockchain
 5. **Target crypto** delivered to specified address
 
+### Rate Provisioning Flow
+1. **Fireblocks requests** current rate for asset pair
+2. **Your system calculates** real-time rate from liquidity sources
+3. **Return formatted rate** with timestamp
+4. **Fireblocks displays** your rate to customers
+5. **Fallback to internal** rates if your endpoint unavailable
+
 ## Error Response Format
 
 Always use consistent error formatting:
@@ -120,7 +164,8 @@ Always use consistent error formatting:
 - `"expired-quote"` - Price quote has expired
 - `"compliance-failed"` - KYC/AML checks failed
 - `"rate-limit-exceeded"` - Too many requests
-
+- `"unsupported-pair"` - Asset pair not supported for rates
+- `"rate-unavailable"` - Rate temporarily unavailable
 
 ## Production Deployment Checklist
 
@@ -131,6 +176,7 @@ Always use consistent error formatting:
 - [ ] Monitoring and alerting set up
 - [ ] Compliance requirements verified
 - [ ] Error handling tested comprehensively
+- [ ] Rates endpoint performance tested (if implemented)
 
 ### Go-Live Process
 1. **Deploy to staging** for final integration testing
@@ -148,8 +194,9 @@ Once you've successfully validated all your chosen endpoints:
 2. **Set up proper database schemas** for orders, accounts, and transactions
 3. **Integrate with payment providers** for fiat and crypto processing
 4. **Implement compliance workflows** for regulatory requirements
-5. **Deploy and test** in Fireblocks sandbox environment
-6. **Submit for production** approval and onboarding
+5. **Set up rate feeds** for real-time pricing (if implementing rates endpoint)
+6. **Deploy and test** in Fireblocks sandbox environment
+7. **Submit for production** approval and onboarding
 
 ---
 
@@ -160,6 +207,7 @@ Once you've successfully validated all your chosen endpoints:
 Your RAMP API implementation is ready when:
 - ✅ All mandatory endpoints validated
 - ✅ Selected optional endpoints implemented and tested
+- ✅ Rates endpoint providing competitive pricing (if implemented)
 - ✅ Error handling follows specification
 - ✅ Security requirements met
 - ✅ Compliance workflows implemented

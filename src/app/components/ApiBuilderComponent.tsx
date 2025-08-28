@@ -45,6 +45,13 @@ const ApiBuilderComponent: React.FC<ApiBuilderComponentProps> = ({ onValidationC
     },
     {
       method: 'GET',
+      path: '/accounts/{accountId}/rate',
+      displayPath: 'GET /accounts/{accountId}/rate',
+      description: 'Get real-time rates for asset pairs',
+      category: 'rates'
+    },
+    {
+      method: 'GET',
       path: '/accounts/{accountId}/capabilities/ramps',
       displayPath: 'GET /accounts/{accountId}/capabilities/ramps',
       description: 'Get list of supported ramp methods',
@@ -82,7 +89,12 @@ const ApiBuilderComponent: React.FC<ApiBuilderComponentProps> = ({ onValidationC
     "accounts": "*",
     "balances": "*",
     "transfers": "*",
-    "ramps": ["account-1", "account-2"]
+    "transfersBlockchain": "*",
+    "transfersFiat": "*",
+    "transfersPeerAccounts": "*",
+    "trading": "*",
+    "liquidity": "*",
+    "ramps": "*"
   }
 }`,
     '/capabilities/assets': `{
@@ -153,6 +165,16 @@ const ApiBuilderComponent: React.FC<ApiBuilderComponentProps> = ({ onValidationC
       "lockedAmount": "500.000000"
     }
   ]
+}`,
+    '/accounts/{accountId}/rate': `{
+  "rate": "0.9",
+  "timestamp": 1546658861000,
+  "baseAsset": {
+    "nationalCurrencyCode": "USD"
+  },
+  "quoteAsset": {
+    "nationalCurrencyCode": "EUR"
+  }
 }`,
     '/accounts/{accountId}/capabilities/ramps': `{
   "capabilities": [
@@ -323,6 +345,9 @@ const ApiBuilderComponent: React.FC<ApiBuilderComponentProps> = ({ onValidationC
         case '/accounts/{accountId}/balances':
           validateBalances(parsedResponse, errors, warnings);
           break;
+        case '/accounts/{accountId}/rate':
+          validateRate(parsedResponse, errors, warnings);
+          break;
         case '/accounts/{accountId}/capabilities/ramps':
           validateRampCapabilities(parsedResponse, errors, warnings);
           break;
@@ -478,6 +503,44 @@ const ApiBuilderComponent: React.FC<ApiBuilderComponentProps> = ({ onValidationC
         }
       }
     });
+  };
+
+  const validateRate = (response: any, errors: string[], warnings: string[]) => {
+    if (!response.rate) {
+      errors.push('Missing required field: rate');
+    } else if (!/^\d+(\.\d+)?$/.test(response.rate)) {
+      errors.push('Field "rate" must be a positive number string');
+    }
+
+    if (!response.timestamp) {
+      errors.push('Missing required field: timestamp');
+    } else if (typeof response.timestamp !== 'number') {
+      errors.push('Field "timestamp" must be a number (Unix timestamp in milliseconds)');
+    }
+
+    if (!response.baseAsset) {
+      errors.push('Missing required field: baseAsset');
+    } else {
+      validateAssetReference(response.baseAsset, 'baseAsset', errors);
+    }
+
+    if (!response.quoteAsset) {
+      errors.push('Missing required field: quoteAsset');
+    } else {
+      validateAssetReference(response.quoteAsset, 'quoteAsset', errors);
+    }
+  };
+
+  const validateAssetReference = (asset: any, fieldName: string, errors: string[]) => {
+    const hasNationalCurrency = !!asset.nationalCurrencyCode;
+    const hasCryptocurrency = !!asset.cryptocurrencySymbol;
+    const hasAssetId = !!asset.assetId;
+    
+    const referenceCount = [hasNationalCurrency, hasCryptocurrency, hasAssetId].filter(Boolean).length;
+    
+    if (referenceCount !== 1) {
+      errors.push(`${fieldName}: Asset must have exactly one of nationalCurrencyCode, cryptocurrencySymbol, or assetId`);
+    }
   };
 
   const validateRampCapabilities = (response: any, errors: string[], warnings: string[]) => {
@@ -705,8 +768,25 @@ const ApiBuilderComponent: React.FC<ApiBuilderComponentProps> = ({ onValidationC
               />
               <div>
                 <div className="font-medium text-gray-900">Account Balances</div>
-                                    <div className="text-sm text-gray-600">GET /accounts/{'{accountId}'}/balances</div>
+                <div className="text-sm text-gray-600">GET /accounts/{'{accountId}'}/balances</div>
                 <div className="text-xs text-gray-500 mt-1">Get current balances for a specific account</div>
+              </div>
+            </label>
+          </div>
+
+          {/* Rates Endpoint */}
+          <div className="border border-gray-200 rounded-lg p-4">
+            <label className="flex items-start gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={enabledOptionalEndpoints.has('/accounts/{accountId}/rate')}
+                onChange={() => toggleOptionalEndpoint('/accounts/{accountId}/rate')}
+                className="mt-1 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              />
+              <div>
+                <div className="font-medium text-gray-900">Real-time Rates</div>
+                <div className="text-sm text-gray-600">GET /accounts/{'{accountId}'}/rate</div>
+                <div className="text-xs text-gray-500 mt-1">Provide your own real-time conversion rates (recommended for better pricing control)</div>
               </div>
             </label>
           </div>
@@ -876,7 +956,7 @@ const ApiBuilderComponent: React.FC<ApiBuilderComponentProps> = ({ onValidationC
 
       {/* Guidelines */}
       <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-        <h4 className="font-semibold text-yellow-800 mb-2">💡 Implementation Guidelines</h4>
+        <h4 className="font-semibold text-yellow-800 mb-2">Implementation Guidelines</h4>
         <ul className="text-yellow-700 space-y-1 text-sm">
           <li>• All amount fields should be strings representing positive numbers</li>
           <li>• Asset references must have exactly one of: nationalCurrencyCode, cryptocurrencySymbol, or assetId</li>
@@ -886,6 +966,8 @@ const ApiBuilderComponent: React.FC<ApiBuilderComponentProps> = ({ onValidationC
           <li>• Use proper decimal places: USD (2), BTC (8), USDC/USDT (6)</li>
           <li>• Include payment instructions for RAMP orders</li>
           <li>• RAMP types must be "OnRamp", "OffRamp", or "Bridge"</li>
+          <li>• Rates endpoint should include timestamp in milliseconds since Unix epoch</li>
+          <li>• Rate values should be positive number strings</li>
         </ul>
       </div>
     </div>
