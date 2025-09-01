@@ -2,7 +2,7 @@
 
 ## What is RAMP?
 
-RAMP (Rapid Asset Movement Protocol) is Fireblocks' solution for bridging traditional finance and cryptocurrency. As payment companies increasingly join the crypto ecosystem, RAMP enables seamless conversion between fiat and digital assets for institutional clients.
+RAMP is Fireblocks' solution for bridging traditional finance and cryptocurrency. As payment companies increasingly join the crypto ecosystem, RAMP enables seamless conversion between fiat and digital assets for institutional clients.
 
 ## New RAMP Capabilities (September 2025)
 
