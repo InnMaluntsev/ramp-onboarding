@@ -1,10 +1,10 @@
-# Step 1: Understanding RAMP & What You'll Build
+# Step 1: Understanding Fireblocks Orders & What You'll Build
 
-## What is RAMP?
+## What are Fireblocks Orders?
 
-RAMP is Fireblocks' solution for bridging traditional finance and cryptocurrency. As payment companies increasingly join the crypto ecosystem, RAMP enables seamless conversion between fiat and digital assets for institutional clients.
+Order Capabilities on Fireblocks provide the foundation for seamless movement between fiat and digital assets. Through integrated on/off-ramp providers, users can easily convert fiat into crypto (on-ramp) or withdraw crypto as local fiat currency (off-ramp). Beyond fiat conversions, Order Capabilities also include crypto-to-crypto swaps, enabling straightforward asset conversion across chains via trusted CeFi providers. 
 
-## New RAMP Capabilities (September 2025)
+## New Orders Capabilities Capabilities (September 2025)
 
 The Fireblocks Network now supports four core payment use cases:
 
