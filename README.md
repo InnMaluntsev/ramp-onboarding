@@ -22,17 +22,17 @@ This enables Providers and the Fireblocks Network users to connect to liquidity 
 
 ## 📋 Learning Path
 
-### Step 1: Understanding RAMP & What You'll Build
-Learn about Fireblocks RAMP capabilities and payment use cases including:
+### Step 1: Understanding Order Capabilities & What You'll Build
+Learn about Fireblocks Order capabilities and payment use cases, including:
 - Fiat-to-crypto (On-ramp) services
 - Crypto-to-fiat (Off-ramp) services  
 - Crypto-to-crypto bridging
 - Order flows and pricing methods
 - Required API endpoints
 
-### Step 2: RAMP Knowledge Check
+### Step 2: Order Capabilities Knowledge Check
 Interactive quiz covering:
-- RAMP fundamentals (on-ramp vs off-ramp)
+- Orders fundamentals (on-ramp vs off-ramp)
 - Technical concepts (bucket assets, account types, order flows)
 - Implementation requirements
 - Compliance and security basics
