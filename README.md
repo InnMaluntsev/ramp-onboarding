@@ -1,6 +1,16 @@
-# RAMP Onboarding Guide
+# Fireblocks Order Capabilities Onboarding Guide
 
-A comprehensive, interactive guide for integrating with Fireblocks RAMP capabilities. This application helps developers understand and implement on-ramp, off-ramp, and crypto-to-crypto bridging services for institutional payment flows.
+Fireblocks Network Link gives service providers a direct path into one of the largest institutional ecosystems. By integrating seamlessly, providers can position themselves as partners of choice for over 2,400 money transmitters, market makers, trading desks, hedge funds, brokerages, custodians, and banks already on the network, and capture the growing wave of participants actively seeking trusted service partners.
+
+With Network Link, providers can deliver a wide range of capabilities, including stablecoin-based payments, cryptocurrency trading, and RWAs- including, but not limited to: 
+
+- **Exchanges**: Including prefunded and off-exchange trading
+- **On and Off-ramps**: Digital asset conversion between fiat currencies and stablecoins, including first and third-party payments
+- **Swaps between digital assets**: Swap stablecoins and cryptocurrencies via DeFi or CeFi mechanisms
+- **Tokenization**: Issuance and management of stablecoins or tokenized assets
+  
+This enables Providers and the Fireblocks Network users to connect to liquidity providers and business opportunities.
+
 
 ## 🚀 Features
 
