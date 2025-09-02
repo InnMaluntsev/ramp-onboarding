@@ -13,19 +13,21 @@ The Fireblocks Network now supports four core payment use cases:
 - **🌉 Crypto-to-Crypto**: Bridge assets across different blockchains
 - **📁 Provider Directory**: Centralized discovery for global payment providers
 
-## Why Build with RAMP?
+## Why Build Order Capabilities with Fireblocks?
 
 ### Business Benefits
-- **Direct Access**: Tap into 1,800+ institutional clients instantly
-- **Enhanced Visibility**: Get discovered within the Fireblocks ecosystem
-- **Built-in Compliance**: Leverage robust Travel Rule and governance frameworks
-- **Operational Efficiency**: Unified workflows for payments and reconciliation
+- **Direct Access to Institutional Demand**: Tap into a growing network of institutional clients through a single, streamlined integration.
+- **Enhanced Visibility**: Get discovered by potential clients within the Fireblocks ecosystem, driving new business opportunities.
+- **Operational Streamlining**: Contribute to reduced client onboarding times and optimized operational workflows for new clients via
+Fireblocks.
+- **Integrated Workflows**: Benefit from unified workflows for trade tracking, payments, and reconciliation processes.
+- **Built In Compliance & Governance**: Rely on Fireblocks’ robust frameworks for wallet verification, Travel Rule, and counterparty governance.
 
 ### Supported Client Use Cases
-- **Crypto Payouts**: Enable PSPs to pay users (sellers, freelancers) in crypto
-- **Merchant Settlements**: Allow crypto-based merchant settlements
-- **Internal Conversions**: First-party fiat ↔ crypto management
-- **Cross-Chain Swaps**: Facilitate multi-blockchain asset movement
+- **Crypto Payouts**: Enable Payment Service Providers (PSPs) to offer merchants the ability to pay their users (e.g., sellers or freelancers) in crypto.
+- **Merchant Settlements**: Allow PSPs to settle with their merchants using crypto via your on/off ramp capabilities.
+- **First-party On/Off Ramps**: Provide a foundational service for Fireblocks clients to manage their own internal fiat-to-crypto conversions.
+- **CeFi C2C Swaps/Bridging**: Facilitate cross-chain crypto-to-crypto swaps through centralized providers.
 
 ## What You'll Build: Core Implementation
 
