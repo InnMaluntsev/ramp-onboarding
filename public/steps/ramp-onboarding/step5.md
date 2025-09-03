@@ -2,7 +2,7 @@
 
 ## Interactive API Response Builder
 
-Now that you understand RAMP concepts, use cases, and security requirements, it's time to build and test your actual API responses. This interactive tool helps you construct properly formatted responses for each RAMP endpoint.
+Now that you understand Orders concepts, use cases, and security requirements, it's time to build and test your actual API responses. This interactive tool helps you construct properly formatted responses for each Orders endpoint.
 
 ## What You'll Build
 
@@ -10,7 +10,7 @@ The API builder below helps you create responses for:
 
 ### Mandatory Endpoints (Required)
 These endpoints **must** be implemented and validated:
-- **GET /capabilities** - Declare your RAMP capabilities and supported features
+- **GET /capabilities** - Declare your Order capabilities and supported features
 - **GET /accounts** - Account structure and management
 - **GET /capabilities/assets** - List your supported custom assets
 
@@ -20,11 +20,11 @@ Select which additional endpoints you want to implement:
 #### Core Account Management
 - **GET /accounts/{id}/balances** - Balance information for accounts
 
-#### RAMP Payment Processing
-- **GET /accounts/{id}/capabilities/ramps** - Available RAMP methods for an account
-- **POST /accounts/{id}/ramps** - Create new RAMP orders (on-ramp, off-ramp, bridge)
-- **GET /accounts/{id}/ramps** - List RAMP transactions
-- **GET /accounts/{id}/ramps/{id}** - Get specific RAMP transaction details
+#### Order Payment Processing
+- **GET /accounts/{id}/capabilities/ramps** - Available Order methods for an account
+- **POST /accounts/{id}/ramps** - Create new Ramp orders (on-ramp, off-ramp, bridge)
+- **GET /accounts/{id}/ramps** - List Ramp transactions
+- **GET /accounts/{id}/ramps/{id}** - Get specific Ramp transaction details
 
 #### Rates & Pricing (Optional but Recommended)
 - **GET /accounts/{id}/rate** - Real-time rates for asset pairs (fallback to Fireblocks internal rates if not implemented)
@@ -34,7 +34,7 @@ Select which additional endpoints you want to implement:
 ### Step 1: Select Your Implementation Scope
 1. **Mandatory endpoints** are automatically included
 2. **Check the optional endpoints** you want to implement
-3. **Focus on RAMP endpoints** if you're building payment processing features
+3. **Focus on Orders endpoints** if you're building payment processing features
 4. **Consider implementing rates endpoint** to provide your own real-time conversion rates
 
 ### Step 2: Build and Validate Responses
@@ -96,8 +96,8 @@ The rates endpoint supports these query parameters:
 - **Data Types**: Use correct types (strings for amounts, proper enums)
 - **Asset References**: Exactly one of nationalCurrencyCode, cryptocurrencySymbol, or assetId
 
-### RAMP-Specific Validation
-- **RAMP Types**: Must be "OnRamp", "OffRamp", or "Bridge"
+### Orders-Specific Validation
+- **Ramp Types**: Must be "OnRamp", "OffRamp", or "Bridge"
 - **Transfer Methods**: Must match supported methods (Iban, PublicBlockchain, etc.)
 - **Payment Instructions**: Required for orders, must include all necessary details
 - **Amounts**: String format with proper decimal precision
@@ -200,11 +200,11 @@ Once you've successfully validated all your chosen endpoints:
 
 ---
 
-*Congratulations! You've completed the RAMP onboarding guide. You're now equipped to build world-class payment infrastructure that serves institutional clients at scale.*
+*Congratulations! You've completed the Order Capabilities onboarding guide. You're now equipped to build world-class payment infrastructure that serves institutional clients at scale.*
 
 ## Ready for Production?
 
-Your RAMP API implementation is ready when:
+Your Order Capabilities API implementation is ready when:
 - ✅ All mandatory endpoints validated
 - ✅ Selected optional endpoints implemented and tested
 - ✅ Rates endpoint providing competitive pricing (if implemented)
