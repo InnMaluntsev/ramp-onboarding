@@ -11,6 +11,15 @@ With Network Link, providers can deliver a wide range of capabilities, including
   
 This enables Providers and the Fireblocks Network users to connect to liquidity providers and business opportunities.
 
+## ❓ Why Build Order Capabilities with Fireblocks?
+
+### Business Benefits
+- **Direct Access to Institutional Demand**: Tap into a growing network of institutional clients through a single, streamlined integration.
+- **Enhanced Visibility**: Get discovered by potential clients within the Fireblocks ecosystem, driving new business opportunities.
+- **Operational Streamlining**: Contribute to reduced client onboarding times and optimized operational workflows for new clients via
+Fireblocks.
+- **Integrated Workflows**: Benefit from unified workflows for trade tracking, payments, and reconciliation processes.
+- **Built In Compliance & Governance**: Rely on Fireblocks’ robust frameworks for wallet verification, Travel Rule, and counterparty governance.
 
 ## 🚀 Features
 
