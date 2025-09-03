@@ -63,6 +63,9 @@ GET /accounts/{accountId}/ramps               # List RAMP transactions
 POST /accounts/{accountId}/ramps              # Create new RAMP order
 GET /accounts/{accountId}/ramps/{id}          # Get RAMP transaction details
 GET /accounts/{accountId}/rate                # Get conversion rates
+
+Note for Prefunded Flow: "balances": ["*"] must be returned in get account api response
+Note for Rates: Providers implement the Rates endpoint for real-time pricing; otherwise Fireblocks uses Quotes or its internal service.
 ```
 
 ### 4. Asset Types Support
@@ -76,7 +79,7 @@ GET /accounts/{accountId}/rate                # Get conversion rates
 **Primary Accounts**: Direct customer accounts
 **Sub-Accounts**: Customer's end-user accounts (B2B2C model)
 
-Support hierarchical account management for businesses serving their own clients.
+Fireblocks supports a 2-tier hierarchy for account management for businesses serving their own clients.
 
 ### 6. Compliance & Security
 
@@ -119,8 +122,8 @@ Customer Request: Convert $1,000 USD → Bitcoin
 
 ## Next Steps
 
-Ready to test your understanding? Let's move to **Step 2: RAMP Knowledge Check** to validate your grasp of these concepts before diving into technical implementation.
+Ready to test your understanding? Let's move to **Step 2: Order Capabilities Knowledge Check** to validate your grasp of these concepts before diving into technical implementation.
 
 ---
 
-*Building RAMP capabilities opens the door to institutional payment flows worth billions in transaction volume. Let's get you ready to capture this opportunity!*
+*Building Fireblocks Orders capabilities opens the door to institutional payment flows worth billions in transaction volume. Let's get you ready to capture this opportunity!*
