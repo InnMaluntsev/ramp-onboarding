@@ -11,17 +11,7 @@ The Fireblocks Network now supports four core payment use cases:
 - **🔄 On-Ramp**: Convert fiat currency → cryptocurrency
 - **💰 Off-Ramp**: Convert cryptocurrency → fiat currency  
 - **🌉 Crypto-to-Crypto**: Bridge assets across different blockchains
-- **📁 Provider Directory**: Centralized discovery for global payment providers
-
-## Why Build Order Capabilities with Fireblocks?
-
-### Business Benefits
-- **Direct Access to Institutional Demand**: Tap into a growing network of institutional clients through a single, streamlined integration.
-- **Enhanced Visibility**: Get discovered by potential clients within the Fireblocks ecosystem, driving new business opportunities.
-- **Operational Streamlining**: Contribute to reduced client onboarding times and optimized operational workflows for new clients via
-Fireblocks.
-- **Integrated Workflows**: Benefit from unified workflows for trade tracking, payments, and reconciliation processes.
-- **Built In Compliance & Governance**: Rely on Fireblocks’ robust frameworks for wallet verification, Travel Rule, and counterparty governance.
+- **📁 Online Provider Directory**: Centralized discovery for global payment providers
 
 ### Supported Client Use Cases
 - **Crypto Payouts**: Enable Payment Service Providers (PSPs) to offer merchants the ability to pay their users (e.g., sellers or freelancers) in crypto.
