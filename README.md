@@ -21,6 +21,14 @@ Fireblocks.
 - **Integrated Workflows**: Benefit from unified workflows for trade tracking, payments, and reconciliation processes.
 - **Built In Compliance & Governance**: Rely on Fireblocks’ robust frameworks for wallet verification, Travel Rule, and counterparty governance.
 
+### Commercial Prerequisites
+Before starting the integration process, providers must complete the following steps:
+1. **Sign the Provider MoU** - Establish the cooperation framework for the integration.
+2. **Complete the provider onboarding questionnaire** - Share your business requirements and use cases to ensure alignment.
+3. **Formalize access to technical resources and APIs**
+4. **Execute the API Agreement** - Must be signed before integration is publicly released
+5. **Marketing Collaboration Agreement** - Finalize marketing commitments, including completing directory information before public release.
+
 ## 🚀 Features
 
 - **Step-by-Step Learning Path**: 4 structured steps from understanding to implementation
