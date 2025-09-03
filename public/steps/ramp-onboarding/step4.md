@@ -6,9 +6,9 @@ This step is **optional** and covers advanced Network Link v2 capabilities beyon
 
 However, understanding these capabilities can help you offer additional value to your clients and build a more comprehensive financial services platform.
 
-## 🌐 Beyond RAMP: Full Network Link Ecosystem
+## 🌐 Beyond Order Capabilities: Full Network Link Ecosystem
 
-While RAMP focuses on payment flows, Network Link v2 offers a complete ecosystem of financial capabilities:
+While Order Capabilities focuses on payment flows, Network Link v2 offers a complete ecosystem of financial capabilities:
 
 ### Transfer Capabilities
 - **Blockchain Transfers**: Send crypto to external addresses
