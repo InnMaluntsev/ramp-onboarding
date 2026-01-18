@@ -1,31 +1,23 @@
-# Step 1: Understanding RAMP & What You'll Build
+# Step 1: Understanding Fireblocks Orders & What You'll Build
 
-## What is RAMP?
+## What are Fireblocks Orders?
 
-RAMP is Fireblocks' solution for bridging traditional finance and cryptocurrency. As payment companies increasingly join the crypto ecosystem, RAMP enables seamless conversion between fiat and digital assets for institutional clients.
+Order Capabilities on Fireblocks provide the foundation for seamless movement between fiat and digital assets. Through integrated on/off-ramp providers, users can easily convert fiat into crypto (on-ramp) or withdraw crypto as local fiat currency (off-ramp). Beyond fiat conversions, Order Capabilities also include crypto-to-crypto swaps, enabling straightforward asset conversion across chains via trusted CeFi providers. 
 
-## New RAMP Capabilities (September 2025)
+## New Orders Capabilities Capabilities (September 2025)
 
 The Fireblocks Network now supports four core payment use cases:
 
 - **🔄 On-Ramp**: Convert fiat currency → cryptocurrency
 - **💰 Off-Ramp**: Convert cryptocurrency → fiat currency  
 - **🌉 Crypto-to-Crypto**: Bridge assets across different blockchains
-- **📁 Provider Directory**: Centralized discovery for global payment providers
-
-## Why Build with RAMP?
-
-### Business Benefits
-- **Direct Access**: Tap into 1,800+ institutional clients instantly
-- **Enhanced Visibility**: Get discovered within the Fireblocks ecosystem
-- **Built-in Compliance**: Leverage robust Travel Rule and governance frameworks
-- **Operational Efficiency**: Unified workflows for payments and reconciliation
+- **📁 Online Provider Directory**: Centralized discovery for global payment providers
 
 ### Supported Client Use Cases
-- **Crypto Payouts**: Enable PSPs to pay users (sellers, freelancers) in crypto
-- **Merchant Settlements**: Allow crypto-based merchant settlements
-- **Internal Conversions**: First-party fiat ↔ crypto management
-- **Cross-Chain Swaps**: Facilitate multi-blockchain asset movement
+- **Crypto Payouts**: Enable Payment Service Providers (PSPs) to offer merchants the ability to pay their users (e.g., sellers or freelancers) in crypto.
+- **Merchant Settlements**: Allow PSPs to settle with their merchants using crypto via your on/off ramp capabilities.
+- **First-party On/Off Ramps**: Provide a foundational service for Fireblocks clients to manage their own internal fiat-to-crypto conversions.
+- **CeFi C2C Swaps/Bridging**: Facilitate cross-chain crypto-to-crypto swaps through centralized providers.
 
 ## What You'll Build: Core Implementation
 
@@ -71,6 +63,9 @@ GET /accounts/{accountId}/ramps               # List RAMP transactions
 POST /accounts/{accountId}/ramps              # Create new RAMP order
 GET /accounts/{accountId}/ramps/{id}          # Get RAMP transaction details
 GET /accounts/{accountId}/rate                # Get conversion rates
+
+Note for Prefunded Flow: "balances": ["*"] must be returned in get account api response
+Note for Rates: Providers implement the Rates endpoint for real-time pricing; otherwise Fireblocks uses Quotes or its internal service.
 ```
 
 ### 4. Asset Types Support
@@ -84,7 +79,7 @@ GET /accounts/{accountId}/rate                # Get conversion rates
 **Primary Accounts**: Direct customer accounts
 **Sub-Accounts**: Customer's end-user accounts (B2B2C model)
 
-Support hierarchical account management for businesses serving their own clients.
+Fireblocks supports a 2-tier hierarchy for account management for businesses serving their own clients.
 
 ### 6. Compliance & Security
 
@@ -127,8 +122,8 @@ Customer Request: Convert $1,000 USD → Bitcoin
 
 ## Next Steps
 
-Ready to test your understanding? Let's move to **Step 2: RAMP Knowledge Check** to validate your grasp of these concepts before diving into technical implementation.
+Ready to test your understanding? Let's move to **Step 2: Order Capabilities Knowledge Check** to validate your grasp of these concepts before diving into technical implementation.
 
 ---
 
-*Building RAMP capabilities opens the door to institutional payment flows worth billions in transaction volume. Let's get you ready to capture this opportunity!*
+*Building Fireblocks Orders capabilities opens the door to institutional payment flows worth billions in transaction volume. Let's get you ready to capture this opportunity!*
