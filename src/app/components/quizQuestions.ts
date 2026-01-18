@@ -32,15 +32,15 @@ const BASIC_RAMP_QUESTIONS: QuizQuestion[] = [
   },
   {
     id: 2,
-    question: "Which of these is NOT one of the four core RAMP capabilities launched in September 2025?",
+    question: "Which of these is NOT one of the four core RAMP capabilities?",
     options: [
       { letter: 'A', text: 'Crypto-to-crypto bridging' },
-      { letter: 'B', text: 'Provider directory for discovery' },
+      { letter: 'B', text: 'Off-ramp (crypto to fiat)' },
       { letter: 'C', text: 'Cryptocurrency mining operations' },
       { letter: 'D', text: 'On-ramp (fiat to crypto)' }
     ],
     correctAnswer: 'C',
-    explanation: "The four core RAMP capabilities are: On-ramp (D), Off-ramp, Crypto-to-crypto bridging (A), and Provider directory (B). Mining operations (C) are infrastructure activities unrelated to payment processing and asset conversion flows that RAMP handles.",
+    explanation: "The four core RAMP capabilities are: On-ramp (D), Off-ramp (B), Crypto-to-crypto bridging (A). Mining operations (C) are infrastructure activities unrelated to payment processing and asset conversion flows that RAMP handles.",
     category: 'ramp-basics'
   },
   {
@@ -68,7 +68,7 @@ const BASIC_RAMP_QUESTIONS: QuizQuestion[] = [
       { letter: 'D', text: 'There is no meaningful difference between them' }
     ],
     correctAnswer: 'B',
-    explanation: "Prefunded flows use existing account balance for immediate conversion, while Delivery (DVP) flows fund the account on-demand when the order is placed. Both can handle fiat and crypto (C is wrong), speed/security aren't the distinguishing factors (A), and they serve different use cases (D is incorrect).",
+    explanation: "Prefunded flows use existing account balance for immediate conversion, while Delivery (DVP) flows fund the account on-demand when the order is placed.",
     category: 'technical'
   },
   {
@@ -127,30 +127,30 @@ const BASIC_RAMP_QUESTIONS: QuizQuestion[] = [
   },
 
   // Questions 9-10: Expert level (Very Hard)
-  {
+{
     id: 9,
-    question: "What determines the PII (Personally Identifiable Information) requirements for RAMP transactions in terms of originator and beneficiary details?",
+    question: "When is PII (Personally Identifiable Information) required for RAMP transactions?",
     options: [
-      { letter: 'A', text: 'Always require both originator and beneficiary details for all transactions' },
-      { letter: 'B', text: 'Transaction amount is the sole determining factor for PII requirements' },
-      { letter: 'C', text: 'Only beneficiary information is required for regulatory compliance' },
-      { letter: 'D', text: 'First-party vs third-party ownership patterns and regulatory requirements' }
+      { letter: 'A', text: 'PII is always mandatory for all RAMP transactions regardless of type' },
+      { letter: 'B', text: 'PII is never required since customers are pre-verified through KYC' },
+      { letter: 'C', text: 'PII requirements depend on provider jurisdiction, transaction type, and regulatory obligations' },
+      { letter: 'D', text: 'PII is only required for off-ramp transactions over $10,000' }
     ],
-    correctAnswer: 'D',
-    explanation: "PII requirements depend on transaction ownership and regulatory context. First-party transactions (same entity) need less PII since parties are pre-KYC'd, while third-party transactions require full details for Travel Rule compliance. A blanket requirement (A) is inefficient, amount alone (B) ignores ownership context, and beneficiary-only (C) misses originator compliance needs.",
+    correctAnswer: 'C',
+    explanation: "PII requirements vary based on multiple factors: the provider's regulatory jurisdiction (different countries have different rules), whether it's a first-party or third-party transaction, transaction type (on-ramp, off-ramp, bridge), and applicable regulations like the Travel Rule. It's not a blanket requirement (A), not completely exempt (B), and not solely amount-based (D) - providers must comply with their specific regulatory framework.",
     category: 'compliance'
   },
   {
     id: 10,
     question: "In the correct sequence for a Prefunded Convert & Withdraw operation, what is the proper order of operations?",
     options: [
-      { letter: 'A', text: 'Generate quote → Reserve funds → Convert → Send to destination → Update balances' },
+      { letter: 'A', text: 'Generate quote/rate → Reserve funds → Convert → Send to destination → Update balances' },
       { letter: 'B', text: 'Send payment instructions → Wait for funds → Convert → Send to destination' },
       { letter: 'C', text: 'Check available balance → Reserve funds → Convert → Send to destination → Update balances' },
       { letter: 'D', text: 'Convert immediately → Check balance → Send to destination' }
     ],
-    correctAnswer: 'C',
-    explanation: "Prefunded operations start by checking available balance, then reserving funds to prevent double-spending, converting assets, sending to destination, and updating balances. Quote generation (A) isn't always needed for prefunded flows, waiting for funds (B) describes DVP flows, and converting before checking balance (D) risks overdrafts and fails atomicity requirements.",
+    correctAnswer: 'A',
+    explanation: "For Prefunded Convert & Withdraw operations, the proper sequence starts with generating a quote or rate to lock in the conversion price, then reserving funds from the existing balance, executing the conversion, sending to the external destination, and finally updating balances. While checking balance (C) is important, the quote/rate generation must come first to establish the conversion terms before any funds are reserved. Option B describes DVP/Delivery flows where payment instructions are sent first, and option D skips critical steps that ensure transaction integrity.",
     category: 'technical'
   }
 ];
@@ -159,7 +159,7 @@ const BASIC_RAMP_QUESTIONS: QuizQuestion[] = [
 const ADVANCED_RAMP_QUESTIONS: QuizQuestion[] = [
   {
     id: 11,
-    question: "When implementing quote-based pricing with late funding in DVP flows, what should happen if the quote expires before payment arrives?",
+    question: "When implementing quote-based pricing in DVP flows, what should happen if the quote expires before payment arrives?",
     options: [
       { letter: 'A', text: 'Execute at the expired quote price anyway' },
       { letter: 'B', text: 'Automatically execute at current market price' },
@@ -167,22 +167,22 @@ const ADVANCED_RAMP_QUESTIONS: QuizQuestion[] = [
       { letter: 'D', text: 'Hold funds indefinitely until customer approves new quote' }
     ],
     correctAnswer: 'C',
-    explanation: "For DVP orders with quote-based pricing, late funding results in order rejection and fund return by default. Providers can optionally implement a feature allowing customers to pre-authorize automatic re-quote and execution for late arrivals.",
+    explanation: "For DVP and Predunded orders with quote-based pricing, quote expires before payment arrives results in order rejection and fund return by default. Providers can optionally implement a feature allowing customers to pre-authorize automatic re-quote and execution for late arrivals.",
     category: 'technical'
   },
   {
-    id: 12,
-    question: "In the RAMP order execution flow, what is the correct sequence for a Prefunded Convert & Withdraw operation?",
-    options: [
-      { letter: 'A', text: 'Generate quote → Reserve funds → Convert → Send to destination → Update balances' },
-      { letter: 'B', text: 'Check available balance → Reserve funds → Convert → Send to destination → Update balances' },
-      { letter: 'C', text: 'Send payment instructions → Wait for funds → Convert → Send to destination' },
-      { letter: 'D', text: 'Convert immediately → Check balance → Send to destination' }
-    ],
-    correctAnswer: 'B',
-    explanation: "Prefunded flows require checking available balance first, then reserving those funds, executing the conversion, sending to the external destination, and finally updating account balances. This ensures atomic operations and prevents double-spending.",
-    category: 'technical'
-  },
+  id: 12,
+  question: "What is the purpose of the 'expiresAt' field in RAMP order responses?",
+  options: [
+    { letter: 'A', text: 'It sets when the entire order record is deleted from the database' },
+    { letter: 'B', text: 'It defines the deadline for customer payment or order completion before automatic cancellation' },
+    { letter: 'C', text: 'It indicates when the provider must send funds to the customer' },
+    { letter: 'D', text: 'It specifies when conversion rates will be recalculated' }
+  ],
+  correctAnswer: 'B',
+  explanation: "The expiresAt field defines the time window for order completion - customers must send payment and providers must process the order before this deadline. After expiration, orders automatically transition to 'Expired' status. It's not for database cleanup (A), doesn't dictate provider timing obligations (C), and rate recalculation (D) is handled separately through quote expiration.",
+  category: 'technical'
+},
   {
     id: 13,
     question: "What is the primary technical difference between implementing ramps capability for 'all accounts' (*) versus specific account IDs in the capabilities response?",
@@ -198,15 +198,15 @@ const ADVANCED_RAMP_QUESTIONS: QuizQuestion[] = [
   },
   {
     id: 14,
-    question: "When handling participantsIdentification in RAMP transactions, what determines whether originator or beneficiary PII is required?",
+    question: "What is the difference between Primary Accounts and Sub-Accounts in the RAMP B2B2C model?",
     options: [
-      { letter: 'A', text: 'Always require both originator and beneficiary details' },
-      { letter: 'B', text: 'Transaction amount determines requirements' },
-      { letter: 'C', text: 'First-party vs third-party ownership and regulatory requirements determine PII needs' },
-      { letter: 'D', text: 'Only beneficiary information is ever required' }
+      { letter: 'A', text: 'Primary Accounts are for businesses, Sub-Accounts are for individuals' },
+      { letter: 'B', text: 'Primary Accounts have higher transaction limits than Sub-Accounts' },
+      { letter: 'C', text: 'Primary Accounts are direct customers, Sub-Accounts are their end-users' },
+      { letter: 'D', text: 'Primary Accounts support all currencies, Sub-Accounts are crypto-only' }
     ],
     correctAnswer: 'C',
-    explanation: "PII requirements depend on transaction ownership patterns and regulatory compliance. First-party transactions (same entity) may require less PII since parties are pre-KYC'd. Third-party transactions need full originator and beneficiary details for Travel Rule compliance and AML reporting.",
+    explanation: "In the B2B2C model, Primary Accounts represent your direct customers (the businesses), while Sub-Accounts represent their end-users (customers' customers). Both account types can serve businesses or individuals, transaction limits aren't the defining factor, and both support all asset types if configured.",
     category: 'compliance'
   },
   {
@@ -219,7 +219,7 @@ const ADVANCED_RAMP_QUESTIONS: QuizQuestion[] = [
       { letter: 'D', text: 'Always use contractAddress regardless of blockchain' }
     ],
     correctAnswer: 'B',
-    explanation: "Each blockchain-token combination requires a unique assetId since the same token (e.g., USDC) on different blockchains (Ethereum vs Polygon) represents different technical assets with different contract addresses, network fees, and settlement characteristics. The asset definition must specify the blockchain for proper handling.",
+    explanation: "Each blockchain-token combination needs a unique assetId because USDC on Ethereum vs Polygon are technically different assets with different contract addresses and fees. These unique assets must be defined in the GET /capabilities/assets endpoint response. Using the same ID (A) creates confusion, using only symbols (C) loses blockchain context, and contract addresses (D) don't work for all asset types.",
     category: 'technical'
   }
 ];
